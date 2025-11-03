@@ -1,3 +1,44 @@
+# Mokka (Apple Silicon Minimal Build)
+
+Minimal, non-Python build of **Mokka** — the Qt-based motion-capture visualiser from the [Biomechanical ToolKit (BTK)](https://github.com/Biomechanical-ToolKit/Mokka).  
+Reconfigured for **macOS arm64 (Apple Silicon)** with modern CMake and Qt 5, serving as a foundation for restoring the full GUI.
+
+---
+
+## Quick Build (macOS arm64)
+
+```bash
+brew install qt@5 cmake
+git clone https://github.com/<YOUR_USER>/Mokka-arm64-minimal.git
+cd Mokka-arm64-minimal && mkdir build && cd build
+
+cmake .. -DMOKKA_USE_PYTHON=OFF \
+  -DCMAKE_OSX_ARCHITECTURES=arm64 \
+  -DCMAKE_PREFIX_PATH="/opt/homebrew/opt/qt@5/lib/cmake"
+
+make -j"$(sysctl -n hw.ncpu)"
+./bin/Mokka
+
+
+Current State
+-------------
+
+Builds and launches a minimal QMainWindow
+Links to BTKCommon, BTKIO, BTKBasicFilters
+Python bindings disabled (MOKKA_USE_PYTHON=OFF)
+Next steps: restore InfoPanel, PlayerBar, and 3D scene widgets
+
+
+Licence
+-------
+
+BSD Licence — original work © Biomechanical ToolKit,
+arm64 build system & refactor © 2025 Diarmuid Lenihan
+
+
+## Original README (Biomechanical-ToolKit, 2013)
+*(Retained for reference)*
+
 Mokka
 =====
 
