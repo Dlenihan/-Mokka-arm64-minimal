@@ -1,1 +1,9 @@
-build*
+build/
+bin/
+CMakeFiles/
+CMakeCache.txt
+*.o
+*.a
+*.dylib
+.DS_Store
+*.bak
