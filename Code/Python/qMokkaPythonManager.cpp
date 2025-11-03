@@ -1,3 +1,6 @@
+#ifndef MOKKA_USE_PYTHON
+#define MOKKA_USE_PYTHON 0
+#endif
 /* 
  * The Biomechanical ToolKit
  * Copyright (c) 2009-2013, Arnaud Barré
@@ -33,7 +36,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if MOKKA_USE_PYTHON
 #include "qMokkaPythonManager.h"
+#endif
 #include "qMokkaApplication.h"
 
 qMokkaPythonManager::qMokkaPythonManager(QObject* parent)

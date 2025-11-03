@@ -35,10 +35,16 @@
  
 #include "qMokkaCoreApplication.h"
 #include "qMokkaCoreApplication_p.h"
-#if defined(MOKKA_USE_PYTHON)
+
+#ifndef MOKKA_USE_PYTHON
+#define MOKKA_USE_PYTHON 0
+#endif
+
+#if MOKKA_USE_PYTHON
   #include "qMokkaCorePythonManager.h"
   #include <PythonQt.h>
 #endif
+
 #include "qMokkaCoreDataManager.h"
 #include "qMokkaAcquisition.h"
 #include "qMokkaPoint.h"
@@ -55,7 +61,7 @@ qMokkaCoreApplicationPrivate::qMokkaCoreApplicationPrivate(qMokkaCoreApplication
 
 qMokkaCoreApplicationPrivate::~qMokkaCoreApplicationPrivate()
 {
-#if defined(MOKKA_USE_PYTHON)
+#if MOKKA_USE_PYTHON
   this->CorePythonManager.clear();
 #endif
 };
@@ -68,7 +74,7 @@ void qMokkaCoreApplicationPrivate::initialize()
   QCoreApplication::setOrganizationDomain("btk.org");
   QCoreApplication::setApplicationName("Mokka");
 
-#if defined(MOKKA_USE_PYTHON)
+#if MOKKA_USE_PYTHON
   if (q->pythonManager())
     q->pythonManager()->mainContext(); // Initialize python
 #endif
@@ -101,7 +107,7 @@ qMokkaCoreApplication::~qMokkaCoreApplication()
 
 // ------------------------------------------------------------------------- //
 
-#if defined(MOKKA_USE_PYTHON)
+#if MOKKA_USE_PYTHON
 qMokkaCorePythonManager* qMokkaCoreApplication::pythonManager() const
 {
   Q_D(const qMokkaCoreApplication);

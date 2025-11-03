@@ -1,3 +1,6 @@
+#ifndef MOKKA_USE_PYTHON
+#define MOKKA_USE_PYTHON 0
+#endif
 /* 
  * The Biomechanical ToolKit
  * Copyright (c) 2009-2013, Arnaud Barré
@@ -37,8 +40,12 @@
 #define __qMokkaPythonConsole_h
 
 // CTK includes
+#if MOKKA_USE_PYTHON
 #include <ctkPythonConsole.h>
+#endif
+#if MOKKA_USE_PYTHON
 #include <ctkAbstractPythonManager.h>
+#endif
 
 class qMokkaPythonConsole : public ctkPythonConsole
 {

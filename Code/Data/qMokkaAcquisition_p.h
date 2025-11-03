@@ -37,6 +37,7 @@
 #define __qMokkaAcquisition_p_h
 
 #include "qMokkaAcquisition.h"
+#include <btkAcquisition.h>
 
 class qMokkaPoint;
 class qMokkaAnalog;
@@ -63,6 +64,8 @@ public:
   QList<qMokkaIMU*> imus;
   QList<qMokkaVideo*> videos;
   
+btk::Acquisition::Pointer btk_ptr;
+
 private:
   qMokkaAcquisition* q_ptr;
 };

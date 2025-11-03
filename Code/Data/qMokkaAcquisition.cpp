@@ -215,3 +215,36 @@ QVariantList qMokkaAcquisition::variantVideos() const
     list.append(QVariant::fromValue(static_cast<QObject*>(*itV)));
   return list;
 };
+
+#include "qMokkaAcquisition.h"
+#include "qMokkaAcquisition_p.h"
+
+#ifndef MOKKA_USE_PYTHON
+#define MOKKA_USE_PYTHON 0
+#endif
+
+// Ensure BTK symbol is known where we use it
+#include <btkAcquisition.h>
+
+void qMokkaAcquisition::clear()
+{
+  Q_D(qMokkaAcquisition);
+
+  // reset filename
+  d->filename.clear();
+
+  // clear all containers
+  d->points.clear();
+  d->analogs.clear();
+  d->events.clear();
+  d->forceplates.clear();
+  d->imus.clear();
+  d->videos.clear();
+
+  // reset BTK handle (member we added in qMokkaAcquisition_p.h)
+  d->btk_ptr.reset();  // or: d->btk_ptr = btk::Acquisition::Pointer();
+
+  // If you track frame number or other state, reset them here too
+  // (only if such members exist)
+  // d->frameNumber = 0;
+}

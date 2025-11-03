@@ -33,10 +33,23 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef MOKKA_USE_PYTHON
+#define MOKKA_USE_PYTHON 0
+#endif
+
+#if MOKKA_USE_PYTHON
+  #include "Python/qMokkaPythonManager.h"
+#endif
+
 #include "qMokkaApplication.h"
 #include "qMokkaApplication_p.h"
-#include "qMokkaPythonManager.h"
 #include "qMokkaDataManager.h"
+
+#if MOKKA_USE_PYTHON
+#if MOKKA_USE_PYTHON
+#include "qMokkaPythonManager.h"
+#endif
+#endif
 
 // ------------------------------------------------------------------------- //
 //                           qMokkaApplicationPrivate                        //
@@ -53,7 +66,11 @@ qMokkaApplicationPrivate::~qMokkaApplicationPrivate()
 void qMokkaApplicationPrivate::initialize()
 {
   Q_Q(qMokkaApplication);
-  q->setPythonManager(new qMokkaPythonManager);
+ 
+#if MOKKA_USE_PYTHON
+ q->setPythonManager(new qMokkaPythonManager);
+#endif
+
   q->setDataManager(new qMokkaDataManager);
   
   this->qMokkaCoreApplicationPrivate::initialize();
